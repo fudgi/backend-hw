@@ -16,7 +16,7 @@ const argv = yargObj.argv;
 const isNeededArgs = checkKeys(argv, ArgParams);
 
 if (!isNeededArgs) {
-  console.log("Нет подходящих аргументов");
+  console.log(new Date());
   process.exit(1);
 }
 
