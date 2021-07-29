@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const yargs = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
-const { checkKeys, gatherArgs, getValue } = require("./utils.js");
+const { checkKeys, gatherArgs } = require("./utils.js");
 
 const Arg = {
   year: ["year", "y"],
@@ -22,29 +22,26 @@ if (!isNeededArgs) {
 
 const isAddArgs = argv._.includes("add");
 const isSubArgs = argv._.includes("sub");
-const isYearArgs = checkKeys(argv, Arg.year);
-const isMonthArgs = checkKeys(argv, Arg.month);
-const isDateArgs = checkKeys(argv, Arg.date);
+const yearKey = checkKeys(argv, Arg.year);
+const monthKey = checkKeys(argv, Arg.month);
+const dateKey = checkKeys(argv, Arg.date);
 
 const add = (a, b) => a + b;
 const sub = (a, b) => a - b;
 
 const calculateData = (func) => {
   const date = new Date();
-  if (isYearArgs) {
+  if (yearKey) {
     const fYear = date.getFullYear();
-    const value = getValue(argv, Arg.year);
-    date.setFullYear(func(fYear, value));
+    date.setFullYear(func(fYear, argv[yearKey]));
   }
-  if (isMonthArgs) {
+  if (monthKey) {
     const fMonth = date.getMonth();
-    const value = getValue(argv, Arg.month);
-    date.setMonth(func(fMonth, value));
+    date.setMonth(func(fMonth, argv[monthKey]));
   }
-  if (isDateArgs) {
+  if (dateKey) {
     const fDate = date.getDate();
-    const value = getValue(argv, Arg.date);
-    date.setDate(func(fDate, value));
+    date.setDate(func(fDate, argv[dateKey]));
   }
   console.log(date);
 };
@@ -55,9 +52,9 @@ else {
   const date = new Date();
   const answer = [];
 
-  if (isYearArgs) answer.push(date.getUTCFullYear());
-  if (isMonthArgs) answer.push(date.getUTCMonth() + 1);
-  if (isDateArgs) answer.push(date.getUTCDate());
+  if (yearKey) answer.push(date.getUTCFullYear());
+  if (monthKey) answer.push(date.getUTCMonth() + 1);
+  if (dateKey) answer.push(date.getUTCDate());
 
   console.log(answer.join(" "));
 }
