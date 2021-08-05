@@ -1,0 +1,14 @@
+{
+  "name": "onpoint-backend-test-3-http-deploy",
+  "version": "1.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "bin": {
+    "http2": "./index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
