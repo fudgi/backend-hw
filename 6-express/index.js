@@ -2,8 +2,10 @@
 const express = require('express')
 const readFile = require('./read-file')
 const writeFile = require('./write-file')
+const cookieParser = require('cookie-parser')
 
 const filePath = './books.json'
+const cookieKey = 'user'
 const emptyBook = {
     author: '',
     imageLink: '',
@@ -14,6 +16,25 @@ const emptyBook = {
 const app = express()
 app.listen(3000)
 app.use(express.json())
+app.use(cookieParser())
+
+//login
+app.post('/api/user/login', (_, res) => {
+    const cookie = {
+        expires: new Date(Date.now() + 8 * 3600000),
+        httpOnly: true,
+    }
+    res.cookie(cookieKey, 'logined', cookie)
+        .status(201)
+        .send({ id: 1, mail: 'test@mail.ru' })
+})
+
+app.use((req, res, next) => {
+    const cookie = req?.cookies?.[cookieKey]
+    if(!cookie) return res.send('authorization needed')
+    next()
+})
+
 //get all books
 app.get('/api/books', async (_, res) => {
     const result = await readFile(filePath)
