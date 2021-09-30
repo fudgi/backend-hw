@@ -7,7 +7,7 @@ const filePath = './books.json'
 
 const app = express()
 app.listen(3000)
-
+app.use(express.json())
 //get all books
 app.get('/api/books', async (_, res) => {
     const result = await readFile(filePath)
@@ -22,19 +22,22 @@ app.get('/api/books/:id', async (req, res) => {
     res.send(book || {})
 })
 
-app.post('/api/books', (req, res) => {
+app.post('/api/books', async (req, res) => {
     //create book
-
-    res.send('asd')
+    const books = await readFile(filePath)
+    books.push(req.body)
+    fs.writeFile(filePath, JSON.stringify(books), (err) => {
+        res.send('OK')
+    })
 })
 
-app.put('/api/books/:id', (req, res) => {
+app.put('/api/books/:id', async (req, res) => {
     //edit book
 
     res.send('asd')
 })
 
-app.delete('/api/books/:id', (req, res) => {
+app.delete('/api/books/:id', async (req, res) => {
     //delete book
 
     res.send('asd')
