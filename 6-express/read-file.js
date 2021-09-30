@@ -1,9 +1,8 @@
 const fs = require('fs')
 
 const readFile = (filePath) => {
-    return new Promise((resolve, reject) => {
-        fs.readFile(filePath, (err, data) => {
-            if(err) reject('я сломался')
+    return new Promise((resolve) => {
+        fs.readFile(filePath, (_, data) => {
             const parsedData = JSON.parse(data)
             return resolve(parsedData)
         })

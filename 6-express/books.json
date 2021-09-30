@@ -46,7 +46,7 @@
         "author": "Unknown",
         "imageLink": "images/njals-saga.jpg",
         "link": "https://en.wikipedia.org/wiki/Nj%C3%A1ls_saga\n",
-        "title": "Nj\u00e1l's Saga"
+        "title": "Njál's Saga"
     },
     {
         "id": 8,
@@ -57,9 +57,9 @@
     },
     {
         "id": 9,
-        "author": "Honor\u00e9 de Balzac",
+        "author": "Honoré de Balzac",
         "imageLink": "images/le-pere-goriot.jpg",
         "link": "https://en.wikipedia.org/wiki/Le_P%C3%A8re_Goriot\n",
-        "title": "Le P\u00e8re Goriot"
+        "title": "Le Père Goriot"
     }
 ]

@@ -1,9 +1,15 @@
 #!/usr/bin/env node
-const fs = require('fs')
 const express = require('express')
-const readFile = require('./readFile')
+const readFile = require('./read-file')
+const writeFile = require('./write-file')
 
 const filePath = './books.json'
+const emptyBook = {
+    author: '',
+    imageLink: '',
+    link: '',
+    title: '',
+}
 
 const app = express()
 app.listen(3000)
@@ -22,23 +28,31 @@ app.get('/api/books/:id', async (req, res) => {
     res.send(book || {})
 })
 
+//create book
 app.post('/api/books', async (req, res) => {
-    //create book
     const books = await readFile(filePath)
-    books.push(req.body)
-    fs.writeFile(filePath, JSON.stringify(books), (err) => {
-        res.send('OK')
-    })
+    const currentId = books[books.length - 1].id
+    books.push({ ...emptyBook, id: currentId + 1, ...req.body })
+    await writeFile(filePath, books)
+    res.send('OK')
 })
 
+//edit book
 app.put('/api/books/:id', async (req, res) => {
-    //edit book
-
-    res.send('asd')
+    const books = await readFile(filePath)
+    const { id } = req.params
+    const index = books.findIndex((book) => book.id === Number(id))
+    if (index === -1) return res.send('Not Included')
+    books[index] = { ...books[index], ...req.body }
+    await writeFile(filePath, books)
+    res.send('OK')
 })
 
+//delete book
 app.delete('/api/books/:id', async (req, res) => {
-    //delete book
-
-    res.send('asd')
+    const books = await readFile(filePath)
+    const { id } = req.params
+    const newBooks = books.filter((book) => book.id !== Number(id))
+    await writeFile(filePath, newBooks)
+    res.send('OK')
 })
