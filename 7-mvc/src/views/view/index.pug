@@ -1,0 +1,28 @@
+extends ../layout.pug
+include ../../mixin/header
+
+block head
+    link(href="/books.css" type="text/css" rel="stylesheet")
+    title MAIN 
+
+block content 
+    +header()
+    .container
+        h1 Добавить книгу
+
+        form.mt-4
+            .form-group
+                label Название
+                h3 asdadasd
+            .form-group
+                label Автор
+                h3 asdadasd
+            .form-group
+                label Ссылка на обложку
+                h3 asdadasd
+            .form-group
+                label Ссылка на книгу
+                h3 asdadasd
+           
+            button.btn.btn-primary(type='submit') Сохранить
+

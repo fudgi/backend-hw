@@ -1,11 +1,13 @@
 extends ./layout.pug
+include ../mixin/header
 
 block head 
     title MAIN 
 
 block content 
+    +header()
     .container
         h1 Главная
         .mt-4
-            button.btn.btn-primary Посмотреть все книги
-            button.btn.btn-primary.ml-2 Добавить книгу
+            a.btn.btn-primary(href='/books') Посмотреть все книги
+            a.btn.btn-primary.ml-2(href='/add') Добавить книгу
