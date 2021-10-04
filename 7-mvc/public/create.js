@@ -6,6 +6,9 @@ form.addEventListener('submit', (e) => {
         method: 'POST',
         body: formData,
     })
-        .then((result) => console.log('Success:', result))
+        .then((res) => res.json())
+        .then((result) => {
+            window.location = '/view/' + result.id
+        })
         .catch((error) => console.log('Error:', error))
 })

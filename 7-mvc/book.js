@@ -38,8 +38,10 @@ class Book {
     createBook = async (fields) => {
         const books = await this.getBooks()
         const currentId = books[books.length - 1].id
-        books.push({ ...emptyBook, id: currentId + 1, ...fields })
+        const newId = currentId + 1
+        books.push({ ...emptyBook, id: newId, ...fields })
         await this.addBooks(books)
+        return newId
     }
 
     editBook = async (id, fields) => {

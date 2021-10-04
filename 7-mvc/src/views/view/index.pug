@@ -17,10 +17,16 @@ block content
             .form-group
                 label Автор
                 h3= author
-            .form-group
-                label Ссылка на обложку
-                h3= imageLink
-            .form-group
-                label Ссылка на книгу
-                h3= link
+            if imageLink
+                .form-group
+                    label Ссылка на обложку
+                    h3= imageLink
+            if link
+                .form-group
+                    label Ссылка на книгу
+                    h3= link
+            if file
+                .form-group
+                    label.mr-4 Ссылка на файл
+                    a(href='/uploads/' + file)= '/public/uploads/' + file
 

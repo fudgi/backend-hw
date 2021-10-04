@@ -2,13 +2,11 @@
 const express = require('express')
 const app = express()
 const path = require('path')
-const multer  = require('multer')
+const upload = require('./multer')
 const Book = require('./book')
 
 const filePath = './books.json'
 const book = new Book(filePath)
-
-const upload = multer({ dest: './public/data/uploads/' })
 
 app.use(express.static('public'))
 app.set('views', path.join(__dirname, 'src/views'))
@@ -42,20 +40,18 @@ app.get('/update/:id', async (req, res) => {
 //create book
 app.post('/api/books', upload.single('file'), async (req, res) => {
     const fields = req.body
-    await book.createBook(fields)
-    res.send('OK')
+    const id = await book.createBook({ ...fields, file: req?.file?.filename })
+    res.send({ id })
 })
 
 //edit book
 app.put('/api/books/:id', upload.single('file'), async (req, res) => {
     const fields = req.body
     const { id } = req.params
-
-    try{
-        await book.editBook(id, fields)
-    }
-    catch {
-        res.send("BAD")
+    try {
+        await book.editBook(id, { ...fields, file: req?.file?.filename })
+    } catch {
+        res.status(400).send('BAD')
         return
     }
     res.status(200).send('OK')
