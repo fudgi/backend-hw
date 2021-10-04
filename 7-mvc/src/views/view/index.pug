@@ -1,4 +1,4 @@
-extends ../layout.pug
+extends ../../layout.pug
 include ../../mixin/header
 
 block head
@@ -8,21 +8,19 @@ block head
 block content 
     +header()
     .container
-        h1 Добавить книгу
+        h1 Просмотр информации о книге
 
         form.mt-4
             .form-group
                 label Название
-                h3 asdadasd
+                h3= title
             .form-group
                 label Автор
-                h3 asdadasd
+                h3= author
             .form-group
                 label Ссылка на обложку
-                h3 asdadasd
+                h3= imageLink
             .form-group
                 label Ссылка на книгу
-                h3 asdadasd
-           
-            button.btn.btn-primary(type='submit') Сохранить
+                h3= link
 

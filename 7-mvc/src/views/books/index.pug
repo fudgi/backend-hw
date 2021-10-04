@@ -1,4 +1,4 @@
-extends ../layout.pug
+extends ../../layout.pug
 include ../../mixin/header
 
 block head
@@ -10,18 +10,19 @@ block content
     .container
         h1 Книги
         .mt-4
-            a.btn.btn-primary(href='/add') Добавить книгу
+            a.btn.btn-primary(href='/create') Добавить книгу
         table.table.mt-4
             thead
                 th(scope='col') #
                 th(scope='col') Заголовок
                 th(scope='col') 
-            tbody 
-                tr 
-                    th(scope='row') 1
-                    td asd 
-                    td
-                        a.btn.btn-success.mr-2.book-button(href='/view/:id')
-                            img(src='https://image.flaticon.com/icons/png/512/65/65000.png')
-                        a.btn.btn-primary.book-button(href='/edit/:id')
-                            img(src='http://simpleicon.com/wp-content/uploads/pen-15.png')
+            tbody
+                each book in books
+                    tr 
+                        th(scope='row')= book.id
+                        td= book.title 
+                        td
+                            a.btn.btn-success.mr-2.book-button(href='/view/'+book.id)
+                                img(src='https://image.flaticon.com/icons/png/512/65/65000.png')
+                            a.btn.btn-primary.book-button(href='/update/'+book.id)
+                                img(src='https://cdn-icons-png.flaticon.com/512/164/164984.png')

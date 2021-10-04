@@ -1,5 +1,5 @@
-extends ./layout.pug
-include ../mixin/header
+extends ../../layout.pug
+include ../../mixin/header
 
 block head 
     title MAIN 
@@ -10,4 +10,4 @@ block content
         h1 Главная
         .mt-4
             a.btn.btn-primary(href='/books') Посмотреть все книги
-            a.btn.btn-primary.ml-2(href='/add') Добавить книгу
+            a.btn.btn-primary.ml-2(href='/create') Добавить книгу

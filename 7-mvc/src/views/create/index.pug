@@ -1,4 +1,4 @@
-extends ../layout.pug
+extends ../../layout.pug
 include ../../mixin/header
 
 block head
@@ -28,9 +28,11 @@ block content
                 .input-group-prepend
                     span.input-group-text Загрузить
                 .custom-file
-                    input#inputGroupFile01.custom-file-input(type='file')
+                    input#inputGroupFile01.custom-file-input(type='file' name='file')
                     label.custom-file-label(for='inputGroupFile01') Файл книги
 
            
             button.btn.btn-primary(type='submit') Сохранить
 
+block script 
+    script(src='/create.js')

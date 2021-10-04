@@ -1,9 +1,9 @@
-extends ../layout.pug
+extends ../../layout.pug
 include ../../mixin/header
 
 block head
     link(href="/books.css" type="text/css" rel="stylesheet")
-    title MAIN 
+    title= id 
 
 block content 
     +header()
@@ -13,24 +13,27 @@ block content
         form.mt-4
             .form-group
                 label Название
-                input.form-control(type='text' name='title')
+                input.form-control(type='text' name='title' value=title)
             .form-group
                 label Автор
-                input.form-control(type='text' name='author')
+                input.form-control(type='text' name='author' value=author)
             .form-group
                 label Ссылка на обложку
-                input.form-control(type='text' name='imageLink')
+                input.form-control(type='text' name='imageLink' value=imageLink)
             .form-group
                 label Ссылка на книгу
-                input.form-control(type='text' name='link')
+                input.form-control(type='text' name='link' value=link)
             
             .input-group.mb-3
                 .input-group-prepend
                     span.input-group-text Загрузить
                 .custom-file
-                    input#inputGroupFile01.custom-file-input(type='file')
-                    label.custom-file-label(for='inputGroupFile01') Файл книги
+                    input#file.custom-file-input(type='file' name='file')
+                    label.custom-file-label(for='file') Файл книги
 
            
-            button.btn.btn-primary(type='submit') Сохранить
+            button#save.btn.btn-primary(type='submit') Сохранить
 
+block script 
+    script(src='/update.js')
+        
