@@ -1,0 +1,36 @@
+extends ../../layout.pug
+include ../../mixin/header
+
+block head
+    link(href="/books.css" type="text/css" rel="stylesheet")
+    title MAIN 
+
+block content 
+    +header()
+    .container
+        h1 Добавить книгу
+
+        form.mt-4
+            .form-group
+                label Название
+                input.form-control(type='text' name='title' required)
+            .form-group
+                label Автор
+                input.form-control(type='text' name='author' required)
+            .form-group
+                label Ссылка на обложку
+                input.form-control(type='text' name='imageLink')
+            .form-group
+                label Ссылка на книгу
+                input.form-control(type='text' name='link')
+            
+            .input-group.mb-3
+                .custom-file
+                    input#inputGroupFile01.custom-file-input(type='file' name='file')
+                    label.custom-file-label(for='inputGroupFile01') Файл книги
+
+           
+            button.btn.btn-primary(type='submit') Сохранить
+
+block script 
+    script(src='/create.js')

@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "author": "Chinua Achebe"
+    },
+    {
+        "id": 2,
+        "author": "Hans Christian Andersen"
+    },
+    {
+        "id": 3,
+        "author": "Dante Alighieri"
+    },
+    {
+        "id": 4,
+        "author": "Unknown"
+    },
+    {
+        "id": 5,
+        "author": "Unknown"
+    },
+    {
+        "id": 6,
+        "author": "Unknown"
+    },
+    {
+        "id": 7,
+        "author": "Unknown"
+    },
+    {
+        "id": 8,
+        "author": "Jane Austen"
+    },
+    {
+        "id": 9,
+        "author": "Honoré de Balzac"
+    },
+    {
+        "author": "zBook1",
+        "id": 10
+    }
+]

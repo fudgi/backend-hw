@@ -1,0 +1,32 @@
+extends ../../layout.pug
+include ../../mixin/header
+
+block head
+    link(href="/books.css" type="text/css" rel="stylesheet")
+    title MAIN 
+
+block content 
+    +header()
+    .container
+        h1 Просмотр информации о книге
+
+        form.mt-4
+            .form-group
+                label Название
+                h3= title
+            .form-group
+                label Автор
+                h3= author
+            if imageLink
+                .form-group
+                    label Ссылка на обложку
+                    h3= imageLink
+            if link
+                .form-group
+                    label Ссылка на книгу
+                    h3= link
+            if file
+                .form-group
+                    label.mr-4 Ссылка на файл
+                    a(href='/uploads/' + file)= '/public/uploads/' + file
+

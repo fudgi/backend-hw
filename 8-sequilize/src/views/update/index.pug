@@ -1,0 +1,37 @@
+extends ../../layout.pug
+include ../../mixin/header
+
+block head
+    link(href="/books.css" type="text/css" rel="stylesheet")
+    title= id 
+
+block content 
+    +header()
+    .container
+        h1 Редактирование книги
+
+        form.mt-4
+            .form-group
+                label Название
+                input.form-control(type='text' name='title' value=title)
+            .form-group
+                label Автор
+                input.form-control(type='text' name='author' value=author)
+            .form-group
+                label Ссылка на обложку
+                input.form-control(type='text' name='imageLink' value=imageLink)
+            .form-group
+                label Ссылка на книгу
+                input.form-control(type='text' name='link' value=link)
+            
+            .input-group.mb-3
+                .custom-file
+                    input#file.custom-file-input(type='file' name='file')
+                    label.custom-file-label(for='file') Файл книги
+
+           
+            button#save.btn.btn-primary(type='submit') Сохранить
+
+block script 
+    script(src='/update.js')
+        
